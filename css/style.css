@@ -1,0 +1,35 @@
+
+/* Placeholder for IRC client chatbox */
+#chat-box {
+    /* padding + background */
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+/* and to do the same for the other API windows */
+#map-box {
+    /* padding + background */
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+#cal-box {
+    /* padding + background */
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* WIP section styling */
+#options-section {
+    /* TODO custom styles */
+}
+
+#horizontal-options {
+    /* TODO add styles if  */
+}
+
+#vertical-options {
+    /* TODO styles */
+}
+
+.p-4 {
+color: aquamarine;
+}
