@@ -4,17 +4,35 @@
     /* padding + background */
     background-color: #f8f9fa;
     border-radius: 4px;
+    height: 400px;
+    background-color: #1c1c1c;
 }
 /* and to do the same for the other API windows */
 #map-box {
     /* padding + background */
     background-color: #f8f9fa;
     border-radius: 4px;
+    height: 400px;
+    background-color: #1c1c1c;
 }
 #cal-box {
     /* padding + background */
     background-color: #f8f9fa;
     border-radius: 4px;
+    height: 400px;
+    background-color: #1c1c1c;
+}
+#CAL_TEXT {
+line-height: 200px;
+
+}
+
+#MAP_TEXT {
+line-height: 200px;
+
+}
+#IRC_TEXT {
+line-height: 200px;
 }
 
 /* WIP section styling */
@@ -24,10 +42,17 @@
 
 #horizontal-options {
     /* TODO add styles if  */
+    height: 100px;
 }
 
 #vertical-options {
     /* TODO styles */
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.p-3 {
+ min-height: 150px;
 }
 
 .p-4 {
