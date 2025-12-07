@@ -8,12 +8,13 @@
     background-color: #1c1c1c;
 }
 /* and to do the same for the other API windows */
-#map-box {
+#map {
     /* padding + background */
     background-color: #f8f9fa;
     border-radius: 4px;
     height: 400px;
     background-color: #1c1c1c;
+    
 }
 #cal-box {
     /* padding + background */
@@ -37,11 +38,11 @@ line-height: 200px;
 
 /* WIP section styling */
 #options-section {
-    /* TODO custom styles */
+    /* TODO styles */
 }
 
 #horizontal-options {
-    /* TODO add styles if  */
+    /* TODO styles */
     height: 100px;
 }
 

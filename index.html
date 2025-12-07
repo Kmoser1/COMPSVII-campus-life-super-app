@@ -10,6 +10,14 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
         <link rel="stylesheet" href ="./css/style.css">
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin=""/>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
     </head>
 
     <body class="d-flex flex-column min-vh-100 bg-light">
@@ -22,7 +30,7 @@
             <h1 class="mb-4 text-center">CAMPUS MAP</h1>
 
             <!-- Map API placeholder -->
-            <div class="border mb-4 w-100" id="map-box">
+            <div class="border mb-4 w-100" id="map">
                 <!-- Map API window placeholder -->
                 <div class="text-center p-4" id="MAP_TEXT">Map API Placeholder</div>
             </div>
@@ -37,16 +45,16 @@
 
 
                     <div class="form-check me-3">
-                        <input class="form-check-input" type="radio" name="mapOption" id="option1" checked>
+                        <input class="form-check-input" type="radio" name="mapOption" id="mapoption1">
                         <label class="form-check-label" for="option1">PLACEHOLDER_subterrain</label>
                     </div>
                     <div class="form-check me-3">
-                        <input class="form-check-input" type="radio" name="mapOption" id="option2">
+                        <input class="form-check-input" type="radio" name="mapOption" id="mapoption2" checked>
                         <label class="form-check-label" for="option2">PLACEHOLDER_groundfloor</label>
                     </div>
                     <!-- Floor 1, 2, 3, etc will go here. contents are gonna depend on whether the main map is selected or which building-->
                     <div class="form-check me-3">
-                        <input class="form-check-input" type="radio" name="mapOption" id="option3">
+                        <input class="form-check-input" type="radio" name="mapOption" id="mapoption3">
                         <label class="form-check-label" for="option3">PLACEHOLDER_elevated</label>
                     </div>
                 </div>
@@ -59,19 +67,19 @@
                 <div class="border p-3">
                     <!-- placeholder vertical options, I think radio buttons will work-->
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="verticalOption" id="vOption1" checked>
+                        <input class="form-check-input" type="radio" name="verticalOption" id="mapvOption1" checked>
                         <label class="form-check-label" for="vOption1">MAIN MAP / FULL CAMPUS</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="verticalOption" id="vOption2">
+                        <input class="form-check-input" type="radio" name="verticalOption" id="mapvOption2">
                         <label class="form-check-label" for="vOption2">BUILDING 1 INTERIOR</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="verticalOption" id="vOption3">
+                        <input class="form-check-input" type="radio" name="verticalOption" id="mapvOption3">
                         <label class="form-check-label" for="vOption3">BUILDING 2 INTERIOR</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="verticalOption" id="vOption4">
+                        <input class="form-check-input" type="radio" name="verticalOption" id="mapvOption4">
                         <label class="form-check-label" for="vOption4">BUILDING 3 INTERIOR</label>
                     </div>
                     <!-- More options depending on how many buildings are included in the final map API viewport-->
