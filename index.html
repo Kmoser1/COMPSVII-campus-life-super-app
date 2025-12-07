@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>The Super Campus Super App - Main Map</title>
 
-            <!--Before production; add better icon-->
+            <!--Not replacing the icon-->
         <link rel="icon" type="image/x-icon" href="/images/placeholder.webp">
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
@@ -19,12 +19,11 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
 
-
+        <!-- These are both required. I think. -->
 
     </head>
 
     <body class="d-flex flex-column min-vh-100 bg-light">
-
 
         <!-- Container for map API window -->
         <div class="container flex-fill d-flex flex-column justify-content-start align-items-center py-4">
@@ -55,7 +54,8 @@
                         <input class="form-check-input" type="radio" name="mapOption" id="mapoption2" checked>
                         <label class="form-check-label" for="option2">Groundfloor</label>
                     </div>
-                    <!-- Floor 1, 2, 3, etc could go here. whether selection is valid depends on whether the main map is selected or which building-->
+                    <!-- Floor 1, 2, 3, etc would go here. whether selection is valid depends on whether the main map is selected or which building-->
+                    <!-- Obviously in a full release, you'd want every floor listed. -->
                     <div class="form-check me-3">
                         <input class="form-check-input" type="radio" name="mapOption" id="mapoption3">
                         <label class="form-check-label" for="option3">SecondFloor/Elevated</label>
@@ -88,7 +88,13 @@
                         <input class="form-check-input" type="radio" name="verticalOption" id="mapvOption4">
                         <label class="form-check-label" for="vOption4">BUILDING 3 INTERIOR</label>
                     </div>
-                    <!-- More options depending on how many buildings are included in the final map API viewport-->
+                    <!-- Once more, a hypothetical final version's options depend on how many buildings are included in the final map API viewport-->
+
+                    <!-- Yunno I also originally wanted to make my own custom maps out of like, direct scans of floorplans.
+                     Maybe not of my real university, cause I have no idea how I would even get those.
+                     But of a fictional university, maybe.
+                     But that was all way too complicated for a project like this. -->
+
                 </div>
             </div>
 

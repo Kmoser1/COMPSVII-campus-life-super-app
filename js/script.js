@@ -1,55 +1,50 @@
+                            //
+                            // EARLY BAD CODE
+                            //
+
 // NAV Buttons special logic(?)
 // probably will be for activating the API on each page.
-// for now, just displays annowing alerts when any page is loaded.
-
-document.getElementById('IRCbutton').addEventListener('click', () => {
+// for now, just displays annoying alerts when any page is loaded.
+// document.getElementById('IRCbutton').addEventListener('click', () => {
    //
    // alert('DEBUG; testing javascript functionality. Dismiss this alert.');
-});
-document.getElementById('MAPbutton').addEventListener('click', () => {
+// });
+// document.getElementById('MAPbutton').addEventListener('click', () => {
     // Placeholder
     // alert('DEBUG; Map refresh will trigger once API is implemented. Right now this just tests that the javascript is connected successfully.');
     //
-});
-document.getElementById('CALbutton').addEventListener('click', () => {
+// });
+// document.getElementById('CALbutton').addEventListener('click', () => {
     //
     // alert('test of javascript functionality. Alerts are actually kind of annoying, maybe I"ll go back to testing with logs')
-});
+// });
 
-//
-//CHATSTUFF
-//
+                            //
+                            //CHATSTUFF
+                            //
 
-
- // Import the functions you need from the SDKs you need
-
+  // Import the functions you need from the SDKs you need
   // TODO: Add SDKs for Firebase products that you want to use
-
   // https://firebase.google.com/docs/web/setup#available-libraries
-
-
   // Your web app's Firebase configuration
-
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-  // Your Firebase code here
 
   const firebaseConfig = {
 
+    // yes, github flags this as a "publically leacked secret".
+    // No, this is not a secret.
+    // This is, in fact, the public apiKey. I'm 82% sure.
+    // Cause the code interprets it as the apiKey and I'm pretty sure it wouldn't work if I just plugged in my actual secret for it.
+    // I've read several times that firebase apiKeys sometimes get false-flagged as secrets.
+    // But also I'm a complete novice at webdevelopment so do tell me if I really did just leak my secret.
+
     apiKey: "AIzaSyAfDAXtTt0ANx-rC63sRcXWad4Y_GBVq10",
-
     authDomain: "webdev-final-chatclient.firebaseapp.com",
-
     projectId: "webdev-final-chatclient",
-
     storageBucket: "webdev-final-chatclient.firebasestorage.app",
-
     messagingSenderId: "793040092508",
-
     appId: "1:793040092508:web:e9646dc698c8e1c88c9599",
-
     measurementId: "G-52S6JE07E0"
-
   };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,18 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    const chatBox = document.getElementById('chat-box');
+    // const chatBox = document.getElementById('chat-box');
     const input = document.getElementById('message-input');
     const btn = document.getElementById('send-btn');
 
-    // Listen for new messages
+    // Listen for new messages?
     const messagesRef = db.ref('messages');
 
+    // display messages in chat-box?
     messagesRef.on('child_added', snapshot => {
       const message = snapshot.val();
-      //debug  
-      console.log('Received message:', message);
-      console.log(chatBox);
+      // debug  
+      // console.log('Received message:', message);
+      // console.log(chatBox);
       const msgDiv = document.createElement('div');
       msgDiv.textContent = message.text;
       if (message.sender === 'me') {
@@ -77,11 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
         msgDiv.style.color = 'lime';
         }
+        // pretty sure this isn't working right now but would probably be fun if I did actually connect 2+ users
+
       document.getElementById('chat-box').appendChild(msgDiv);
       document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+      // originally used "chatBox" (above) but replaced it all with the longer version during troubleshooting.
+      // I could probably put it back to save on the characters but I'm really afraid of touching something and the whole thing falling apart. Again.
     });
 
-    // Send message
+    // Send message?
     btn.onclick = () => {
       const text = input.value;
       if (text.trim() !== "") {
@@ -90,6 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 });
+
+                    //
+                    // OLD code from an API I abandoned mid-development to start over with something else
+                    //
+
 /*
     (function() {
     var w = window;
@@ -124,9 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 */
 
-//
-//CALSTUFFS
-//
+                                //
+                                //CALSTUFFS
+                                //
+
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('cal-box');
       var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -136,10 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       calendar.render();
 
-      // Default action
+      // Default action: calDo (calendar do = 1: add, 2: edit, 3: delete)
       var calDo = 1;
 
       //would work, but requires more tinkering than it feels worth for the ~5 lines it saves
+
       /* Set calDo based on selected radio button
       document.querySelectorAll('input[name="action"]').forEach(radio => {
         radio.addEventListener('change', () => {
@@ -148,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
         */
 
+      // This block is more my style anyway.
     document.getElementById('caloption1').addEventListener('click', () => {
         calDo = 1
     });
@@ -158,9 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
         calDo = 3
     });
       
-        // Handle submit button click
-      document.getElementById('caloption6').addEventListener('click', () => {
-        const action = calDo; // 1: add, 2: edit, 3: delete
+    // Handle submit button click
+    document.getElementById('caloption6').addEventListener('click', () => {
+        const action = calDo;
         const dateStr = document.getElementById('caloption4').value;
         //debug
         // alert('datestring test' + dateStr)
@@ -171,7 +179,11 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
         
-
+        // This one is a fun one.
+        // had to do a whole workaround because apparently the Calendar API I chose does funny things with timezones,
+        // Which actually resulted in the input date being 1 day off from where the scheduled event appears.
+        // So this function pretty much handles that, converting timezones.
+        // Of course, it used to only work in UTC, now it only works in OUR timezone.
         function getUTCDateString(dateStr) {
             const date = new Date(dateStr);
             const year = date.getUTCFullYear();
@@ -181,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const isoDate = getUTCDateString(dateStr);
 
-        if (action === 1) {
+        if (action == 1) {
           // Add Event
             const isoDate = getUTCDateString(dateStr);
             calendar.addEvent({
@@ -190,13 +202,13 @@ document.addEventListener('DOMContentLoaded', () => {
             allDay: true
             });
 
-        } else if (action === 2) {
+        } else if (action == 2) {
           // Edit Event
-          // Find first event matching the name and date
+          // Finds first event matching the date, renames it
           const events = calendar.getEvents();
           let eventFound = false;
           for (let ev of events) {
-            if (ev.title === eventName || ev.start.toISOString().startsWith(dateStr)) {
+            if (ev.title == eventName || ev.start.toISOString().startsWith(dateStr)) {
               ev.setProp('title', eventName);
               ev.setStart(eventDate);
               eventFound = true;
@@ -207,12 +219,13 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('No matching event found to edit.');
           }
 
-        } else if (action === 3) {
+        } else if (action == 3) {
           // Delete Event
+          // Only if both the event date and event name match.
           const events = calendar.getEvents();
           let deleted = false;
           for (let ev of events) {
-            if (ev.title === eventName && ev.start.toISOString().startsWith(dateStr)) {
+            if (ev.title == eventName && ev.start.toISOString().startsWith(dateStr)) {
               ev.remove();
               deleted = true;
               break;
@@ -225,18 +238,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Convert date string to ISO string at midnight UTC because funny fullcalendar
+    // Convert date string to ISO string at midnight UTC continued because funny fullcalendar
     function getUTCDateString(dateStr) {
     const date = new Date(dateStr);
     // Format as YYYY-MM-DDTHH:MM:SSZ (UTC)
     const year = date.getUTCFullYear();
     const month = String(date.getUTCMonth() + 1).padStart(2, '0');
     const day = String(date.getUTCDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`; // This is in ISO format for allDay events
+    return `${year}-${month}-${day}`;
+    // ISO format for allDay events?
 }
 
+                                //
+                                // early bad junk code, started from scratch
+                                //
 
-// early bad junk code, started from scratch
 /*
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('cal-box');
@@ -272,11 +288,11 @@ document.getElementById('caloption6').addEventListener('', () => {
 
 
 
-//
-//MAPSTUFFS
-//
+                                //
+                                //MAPSTUFFS
+                                //
 
-//DEFAULT POS. the buttons eventListeners should setView.
+// DEFAULT POS. the buttons eventListeners should setView.
 // hardcoding coords seems like best practice for this specifically, but I'm sure one could streamline it
 
 var map = L.map('map').setView([40.87365644631193, -81.36947012705369], 17);
@@ -508,7 +524,9 @@ document.getElementById('mapoption3').addEventListener('click', () => {
     }
 });
 
-// old bad code
+                                //
+                                // old bad code. And I mean, REALLY abysmal.
+                                //
 
 /*
 document.getElementById('mapvOption1').addEventListener('click', () => {
@@ -721,6 +739,8 @@ document.getElementById('mapvOption4').addEventListener('click', () => {
     })
 })
 */
+
+
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
