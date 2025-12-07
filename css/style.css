@@ -65,3 +65,10 @@ line-height: 200px;
 .p-4 {
 color: aquamarine;
 }
+
+#big-note {
+align-items: normal;
+align-items: center;
+align-content: center;
+text-align: center;
+}

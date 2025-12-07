@@ -88,7 +88,7 @@ document.getElementById('CALbutton').addEventListener('click', () => {
           const events = calendar.getEvents();
           let eventFound = false;
           for (let ev of events) {
-            if (ev.title === eventName && ev.start.toISOString().startsWith(dateStr)) {
+            if (ev.title === eventName || ev.start.toISOString().startsWith(dateStr)) {
               ev.setProp('title', eventName);
               ev.setStart(eventDate);
               eventFound = true;
@@ -169,6 +169,7 @@ document.getElementById('caloption6').addEventListener('', () => {
 //
 
 //DEFAULT POS. the buttons eventListeners should setView.
+// hardcoding coords seems like best practice for this specifically, but I'm sure one could streamline it
 
 var map = L.map('map').setView([40.87365644631193, -81.36947012705369], 17);
 var marker
