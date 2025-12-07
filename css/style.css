@@ -2,10 +2,11 @@
 /* Placeholder for IRC client chatbox */
 #chat-box {
     /* padding + background */
-    background-color: #f8f9fa;
+     padding-left: 16px;
     border-radius: 4px;
     height: 400px;
     background-color: #1c1c1c;
+    overflow-y: auto;
 }
 /* and to do the same for the other API windows */
 #map {
@@ -39,7 +40,8 @@ line-height: 200px;
 
 }
 #IRC_TEXT {
-line-height: 200px;
+line-height: 00px;
+color:rgb(0, 227, 144)
 }
 
 /* WIP section styling */

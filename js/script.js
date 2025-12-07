@@ -17,6 +17,114 @@ document.getElementById('CALbutton').addEventListener('click', () => {
 });
 
 //
+//CHATSTUFF
+//
+
+
+ // Import the functions you need from the SDKs you need
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  // Your Firebase code here
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyAfDAXtTt0ANx-rC63sRcXWad4Y_GBVq10",
+
+    authDomain: "webdev-final-chatclient.firebaseapp.com",
+
+    projectId: "webdev-final-chatclient",
+
+    storageBucket: "webdev-final-chatclient.firebasestorage.app",
+
+    messagingSenderId: "793040092508",
+
+    appId: "1:793040092508:web:e9646dc698c8e1c88c9599",
+
+    measurementId: "G-52S6JE07E0"
+
+  };
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const chatBox = document.getElementById('chat-box');
+    const input = document.getElementById('message-input');
+    const btn = document.getElementById('send-btn');
+
+    // Listen for new messages
+    const messagesRef = db.ref('messages');
+
+    messagesRef.on('child_added', snapshot => {
+      const message = snapshot.val();
+      //debug  
+      console.log('Received message:', message);
+      console.log(chatBox);
+      const msgDiv = document.createElement('div');
+      msgDiv.textContent = message.text;
+      if (message.sender === 'me') {
+        msgDiv.style.color = 'blue';
+        } else {
+        msgDiv.style.color = 'lime';
+        }
+      document.getElementById('chat-box').appendChild(msgDiv);
+      document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+    });
+
+    // Send message
+    btn.onclick = () => {
+      const text = input.value;
+      if (text.trim() !== "") {
+        messagesRef.push({ text: text });
+        input.value = "";
+      }
+    };
+});
+/*
+    (function() {
+    var w = window;
+    var ic = w.Intercom;
+    if (typeof ic === "function") {
+      ic('reattach_activator');
+      ic('update', window.intercomSettings);
+    } else {
+      var d = document;
+      var i = function() {
+        i.c(arguments);
+      };
+      i.q = [];
+      i.c = function(args) {
+        i.q.push(args);
+      };
+      w.Intercom = i;
+      function l() {
+        var s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://widget.intercom.io/widget/YOUR_APP_ID';
+        var x = d.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+      }
+      if (document.readyState === 'complete') {
+        l();
+      } else {
+        window.addEventListener('load', l);
+      }
+    }
+  })();
+*/
+
+//
 //CALSTUFFS
 //
     document.addEventListener('DOMContentLoaded', function() {
