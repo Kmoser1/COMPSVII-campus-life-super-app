@@ -16,6 +16,120 @@ document.getElementById('CALbutton').addEventListener('click', () => {
     // alert('test of javascript functionality. Alerts are actually kind of annoying, maybe I"ll go back to testing with logs')
 });
 
+//
+//CALSTUFFS
+//
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('cal-box');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        editable: true,
+        events: []
+      });
+      calendar.render();
+
+      // Default action
+      var calDo = 1;
+
+      //would work, but requires more tinkering than it feels worth for the ~5 lines it saves
+      /* Set calDo based on selected radio button
+      document.querySelectorAll('input[name="action"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+          calDo = parseInt(radio.value);
+        });
+      });
+        */
+
+    document.getElementById('caloption1').addEventListener('click', () => {
+        calDo = 1
+    });
+    document.getElementById('caloption2').addEventListener('click', () => {
+        calDo = 2
+    });
+    document.getElementById('caloption3').addEventListener('click', () => {
+        calDo = 3
+    });
+      
+        // Handle submit button click
+      document.getElementById('caloption6').addEventListener('click', () => {
+        const action = calDo; // 1: add, 2: edit, 3: delete
+        const dateStr = document.getElementById('caloption4').value;
+        //debug
+        // alert('datestring test' + dateStr)
+        const eventName = document.getElementById('caloption5').value.trim();
+
+        if (!dateStr || !eventName) {
+          alert('Please enter both date and event name.');
+          return;
+        }
+        
+
+        function getUTCDateString(dateStr) {
+            const date = new Date(dateStr);
+            const year = date.getUTCFullYear();
+            const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+            const day = String(date.getUTCDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+            }
+            const isoDate = getUTCDateString(dateStr);
+
+        if (action === 1) {
+          // Add Event
+            const isoDate = getUTCDateString(dateStr);
+            calendar.addEvent({
+            title: eventName,
+            start: isoDate,
+            allDay: true
+            });
+
+        } else if (action === 2) {
+          // Edit Event
+          // Find first event matching the name and date
+          const events = calendar.getEvents();
+          let eventFound = false;
+          for (let ev of events) {
+            if (ev.title === eventName && ev.start.toISOString().startsWith(dateStr)) {
+              ev.setProp('title', eventName);
+              ev.setStart(eventDate);
+              eventFound = true;
+              break;
+            }
+          }
+          if (!eventFound) {
+            alert('No matching event found to edit.');
+          }
+
+        } else if (action === 3) {
+          // Delete Event
+          const events = calendar.getEvents();
+          let deleted = false;
+          for (let ev of events) {
+            if (ev.title === eventName && ev.start.toISOString().startsWith(dateStr)) {
+              ev.remove();
+              deleted = true;
+              break;
+            }
+          }
+          if (!deleted) {
+            alert('No matching event found to delete.');
+          }
+        }
+      });
+    });
+
+    // Convert date string to ISO string at midnight UTC because funny fullcalendar
+    function getUTCDateString(dateStr) {
+    const date = new Date(dateStr);
+    // Format as YYYY-MM-DDTHH:MM:SSZ (UTC)
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`; // This is in ISO format for allDay events
+}
+
+
+// early bad junk code, started from scratch
+/*
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('cal-box');
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -25,23 +139,37 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
 });           
 
+//set default for which radio button is selected
+var calDo = 1
+
+document.getElementById('caloption1').addEventListener('click', () => {
+    calDo = 1
+});
+document.getElementById('caloption2').addEventListener('click', () => {
+    calDo = 2
+});
+document.getElementById('caloption3').addEventListener('click', () => {
+    calDo = 3
+});
+document.getElementById('caloption4').addEventListener('', () => {
+    
+});
+document.getElementById('caloption5').addEventListener('', () => {
+    
+});
+document.getElementById('caloption6').addEventListener('', () => {
+    
+});
+*/
 
 
 
+//
+//MAPSTUFFS
+//
 
-
-
-
-
-
-
-
-
-
-
-
-            //MAPSTUFFS
 //DEFAULT POS. the buttons eventListeners should setView.
+
 var map = L.map('map').setView([40.87365644631193, -81.36947012705369], 17);
 var marker
 var markerGroup = L.featureGroup().addTo(map);
@@ -59,9 +187,7 @@ const markerGroup1 = L.layerGroup().addTo(map);
 const markerGroup2 = L.layerGroup().addTo(map);
 const markerGroup3 = L.layerGroup().addTo(map);
 
-//
 //SELECT-O-MATIC
-//
 
 document.getElementById('mapvOption1').addEventListener('click', () => {
     // Set map view

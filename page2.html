@@ -34,34 +34,37 @@
             <p2>
                 CALENDAR OPTIONS
             </p2>
+            <p2>
+                NOTE: PLEASE ENTER CALENDAR DATE AS MM-DD-YYYY
+            </p2>
             <div class="w-100 mb-4" id="horizontal-options">
                 <div class="d-flex overflow-auto border p-3">
                     <!-- PLACEHOLDER options, initially copied from index.html, then copied from page1. -->
                     <!-- All events added from the user is visible to the user only. -->
 
                     <div class="form-check me-3">
-                        <input class="form-check-input" type="text" name="calOption" id="caloption1" checked>
-                        <label class="form-check-label" for="option1">PLACEHOLDER_ADD-EVENT(?)</label>
+                        <input class="form-check-input" type="radio" name="calOption" id="caloption1" checked>
+                        <label class="form-check-label" for="option1">ADD EVENT</label>
                     </div>
                     <div class="form-check me-3">
-                        <input class="form-check-input" type="text" name="ircOption" id="caloption2">
-                        <label class="form-check-label" for="option2">PLACEHOLDER_EDIT-EVENT(?)</label>
-                    </div>
-                    <div class="form-check me-3">
-                        <input class="form-check-input" type="text" name="ircOption" id="caloption2">
-                        <label class="form-check-label" for="option2">PLACEHOLDER_DEL-EVENT(?)</label>
+                        <input class="form-check-input" type="radio" name="calOption" id="caloption2">
+                        <label class="form-check-label" for="option2">EDIT EVENT</label>
                     </div>
                     <div class="form-check me-3">
                         <input class="form-check-input" type="radio" name="calOption" id="caloption3">
-                        <label class="form-check-label" for="option3">PLACEHOLDER_LIGHT/DARK_THEME(?)</label>
+                        <label class="form-check-label" for="option2">DELETE EVENT</label>
                     </div>
                     <div class="form-check me-3">
-                        <input class="form-check-input" type="radio" name="calOption" id="caloption4" checked>
-                        <label class="form-check-label" for="option4">PLACEHOLDER_CALPLACEHOLDER</label>
+                        <input type="date" name="calOption" id="caloption4">
+                        <label class="form-check-label" for="option3">EVENT DATE</label>
                     </div>
                     <div class="form-check me-3">
-                        <input class="form-check-input" type="radio" name="calOption" id="caloption5">
-                        <label class="form-check-label" for="option5">PLACEHOLDER_CALPLACEHOLDER</label>
+                        <input type="text" name="calOption" id="caloption5">
+                        <label class="form-check-label" for="option4">EVENT NAME</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="submit" name="calOption" id="caloption6">
+                        <label class="form-check-label" for="option4">SUBMIT</label>
                     </div>
                 </div>
             </div>
