@@ -4,18 +4,43 @@
 
 document.getElementById('IRCbutton').addEventListener('click', () => {
    //
-   alert('DEBUG; testing javascript functionality. Dismiss this alert.');
+   // alert('DEBUG; testing javascript functionality. Dismiss this alert.');
 });
 document.getElementById('MAPbutton').addEventListener('click', () => {
     // Placeholder
-    alert('DEBUG; Map refresh will trigger once API is implemented. Right now this just tests that the javascript is connected successfully.');
+    // alert('DEBUG; Map refresh will trigger once API is implemented. Right now this just tests that the javascript is connected successfully.');
     //
 });
 document.getElementById('CALbutton').addEventListener('click', () => {
     //
-    alert('test of javascript functionality. Alerts are actually kind of annoying, maybe I"ll go back to testing with logs')
+    // alert('test of javascript functionality. Alerts are actually kind of annoying, maybe I"ll go back to testing with logs')
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('cal-box');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth'
+                    
+    });
+    calendar.render();
+});           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //MAPSTUFFS
 //DEFAULT POS. the buttons eventListeners should setView.
 var map = L.map('map').setView([40.87365644631193, -81.36947012705369], 17);
 var marker
@@ -248,6 +273,8 @@ document.getElementById('mapoption3').addEventListener('click', () => {
     }
 });
 
+// old bad code
+
 /*
 document.getElementById('mapvOption1').addEventListener('click', () => {
 
@@ -463,3 +490,4 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+

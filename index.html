@@ -18,6 +18,9 @@
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
+
+        
+
     </head>
 
     <body class="d-flex flex-column min-vh-100 bg-light">
@@ -52,7 +55,7 @@
                         <input class="form-check-input" type="radio" name="mapOption" id="mapoption2" checked>
                         <label class="form-check-label" for="option2">Groundfloor</label>
                     </div>
-                    <!-- Floor 1, 2, 3, etc will go here. contents are gonna depend on whether the main map is selected or which building-->
+                    <!-- Floor 1, 2, 3, etc could go here. whether selection is valid depends on whether the main map is selected or which building-->
                     <div class="form-check me-3">
                         <input class="form-check-input" type="radio" name="mapOption" id="mapoption3">
                         <label class="form-check-label" for="option3">SecondFloor/Elevated</label>
@@ -61,6 +64,9 @@
             </div>
             <p2>
                 MAP SELECTION OPTIONS
+            </p2>
+            <p2>
+                (BE SURE TO RESELECT WHICH FLOOR / ELEVATION LEVEL YOU WANT TO SEE AFTER SELECTING YOUR MAP)
             </p2>
             <!-- Vertical options box -->
             <div class="w-100 mb-4" id="vertical-options">
